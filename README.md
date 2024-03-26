@@ -3,3 +3,5 @@ https://github.com/charlesq34/pointnet
 ### The above site is the original repositary of this. 
 ### Because there is no any other recent tensorflow version of the original code, I made tensorflow 2.X version code to apply various fields.
 Download data from here : https://shapenet.cs.stanford.edu/media/modelnet40_ply_hdf5_2048.zip
+Citation : 
+Qi, Charles R., et al. "Pointnet: Deep learning on point sets for 3d classification and segmentation." Proceedings of the IEEE conference on computer vision and pattern recognition. 2017.
