@@ -10,17 +10,18 @@ import argparse
 from utils import loss_graph, shuffle_data, rotate_point_cloud, data_loader
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(BASE_DIR)
+
 TRAIN_FILES = [
-"data/modelnet40_ply_hdf5_2048/ply_data_train0.h5",
-"data/modelnet40_ply_hdf5_2048/ply_data_train1.h5",
-"data/modelnet40_ply_hdf5_2048/ply_data_train2.h5",
-"data/modelnet40_ply_hdf5_2048/ply_data_train3.h5",
-# "data/modelnet40_ply_hdf5_2048/ply_data_train4.h5"
+"../data/modelnet40_ply_hdf5_2048/ply_data_train0.h5",
+"../data/modelnet40_ply_hdf5_2048/ply_data_train1.h5",
+"../data/modelnet40_ply_hdf5_2048/ply_data_train2.h5",
+"../data/modelnet40_ply_hdf5_2048/ply_data_train3.h5",
+# "../data/modelnet40_ply_hdf5_2048/ply_data_train4.h5"
 ]
 
 TEST_FILES = [
-"data/modelnet40_ply_hdf5_2048/ply_data_test0.h5",
-"data/modelnet40_ply_hdf5_2048/ply_data_test1.h5"
+"../data/modelnet40_ply_hdf5_2048/ply_data_test0.h5",
+"../data/modelnet40_ply_hdf5_2048/ply_data_test1.h5"
 ]
 
 parser = argparse.ArgumentParser()
@@ -172,7 +173,7 @@ def train(max_iteration):
             iteration_validation_accuracy = np.mean(np.array(validation_accuracy))
             iteration_loss = np.mean(np.array(total_loss))
             iteration_accuracy = np.mean(np.array(total_accuracy))
-            print(f'Iteration {iteration + 1}, Loss: {iteration_loss:.5f}, Validation Loss: {iteration_validation_loss:.5f}, Accuracy: {iteration_accuracy:.5f}, Validation Accuracy: {iteration_validation_accuracy:.5f}')
+            print(f'Loss: {iteration_loss:.5f}, Validation Loss: {iteration_validation_loss:.5f}, Accuracy: {iteration_accuracy:.5f}, Validation Accuracy: {iteration_validation_accuracy:.5f}')
             
             train_losses.append(iteration_loss)
             validation_losses.append(iteration_validation_loss)
