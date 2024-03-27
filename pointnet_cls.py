@@ -111,8 +111,10 @@ model.summary()
 optimizer = Adam(learning_rate=args.learning_rate)
 
 def train(max_iteration):
-    losses = []
-    accuracies = []
+    train_losses = []
+    validation_losses = []
+    train_accuracies = []
+    validation_accuracies = []
     model_params = model.trainable_variables
     
     for iteration in range(max_iteration):
@@ -170,8 +172,12 @@ def train(max_iteration):
             iteration_loss = np.mean(np.array(total_loss))
             iteration_accuracy = np.mean(np.array(total_accuracy))
             print(f'Iteration {iteration + 1}, Loss: {iteration_loss:.5f}, Validation Loss: {iteration_validation_loss:.5f}, Accuracy: {iteration_accuracy:.5f}, Validation Accuracy: {iteration_validation_accuracy:.5f}')
-            losses.append(iteration_loss)
-            accuracies.append(iteration_accuracy)
+            
+            train_losses.append(iteration_loss)
+            validation_losses.append(iteration_validation_loss)
+
+            train_accuracies.append(iteration_accuracy)
+            validation_accuracies.append(iteration_validation_accuracy)
     return losses, accuracies
 max_iteration = args.max_iteration
 losses, accuracies = train(max_iteration)
