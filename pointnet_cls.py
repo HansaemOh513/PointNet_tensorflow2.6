@@ -31,6 +31,7 @@ parser.add_argument('--max_iteration', type=int, default=100, help='Iteration to
 parser.add_argument('--batch_size', type=int, default=32, help='Batch Size during training [default: 32]')
 parser.add_argument('--learning_rate', type=float, default=0.0001, help='Initial learning rate [default: 0.0001]')
 parser.add_argument('--dropout_rate', type=float, default=0.7, help='Dropout_rate [default: 0.7]')
+parser.add_argument('--summary', type=str, default=False, help='Model summary [default: False]')
 args = parser.parse_args()
 batch_size = args.batch_size
 # 1번 cuda device 사용 : Use first cuda device
@@ -105,10 +106,13 @@ class network(tf.keras.Model):
         x = self.model_2_dense2(x)
         x = self.model_2_dense3(x)
         return x
-# 모델 구조 확인 : Building to see model construction
+
 model = network()
 model.build(input_shape=(None, 2048, 3, 1))
-model.summary()
+# 모델 구조 확인 : Building to see model construction
+if args.summary:
+    model.summary()
+    sys.exit()
 # 실험에 의해 확인한 learning_rate 0.0001 : The learning rate 0.0001 is chosen by experiments
 optimizer = Adam(learning_rate=args.learning_rate)
 
