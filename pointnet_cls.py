@@ -178,9 +178,9 @@ def train(max_iteration):
 
             train_accuracies.append(iteration_accuracy)
             validation_accuracies.append(iteration_validation_accuracy)
-    return losses, accuracies
+    return train_losses, validation_losses, train_accuracies, validation_accuracies
 max_iteration = args.max_iteration
-losses, accuracies = train(max_iteration)
+train_losses, validation_losses, train_accuracies, validation_accuracies = train(max_iteration)
 # 훈련 곡선 : training curve
 
-loss_graph(losses, accuracies)
+loss_graph(train_losses, validation_losses, train_accuracies, validation_accuracies)
