@@ -32,6 +32,7 @@ parser.add_argument('--batch_size', type=int, default=32, help='Batch Size durin
 parser.add_argument('--learning_rate', type=float, default=0.0001, help='Initial learning rate [default: 0.0001]')
 parser.add_argument('--dropout_rate', type=float, default=0.7, help='Dropout_rate [default: 0.7]')
 parser.add_argument('--summary', type=str, default=False, help='Model summary [default: False]')
+parser.add_argument('--schedule', type=str, default=True, help='Optimizer scheduler [default: True]')
 args = parser.parse_args()
 batch_size = args.batch_size
 # 1번 cuda device 사용 : Use first cuda device
@@ -117,6 +118,13 @@ if args.summary:
     sys.exit()
 # 실험에 의해 확인한 learning_rate 0.0001 : The learning rate 0.0001 is chosen by experiments
 optimizer = Adam(learning_rate=args.learning_rate)
+if args.schedule:
+    lr_schedule = tf.keras.optimizers.schedules.ExponentialDecay(
+        args.learning_rate,
+        decay_steps=10000,
+        decay_rate=0.96,
+        staircase=True)
+    optimizer = Adam(lr_schedule)
 
 def train(max_iteration):
     train_losses = []
