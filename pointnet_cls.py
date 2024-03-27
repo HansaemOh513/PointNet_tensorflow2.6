@@ -103,7 +103,9 @@ class network(tf.keras.Model):
         x = self.model_2_maxpooling2d(x)
         x = self.model_2_flatten(x)
         x = self.model_2_dense1(x)
+        x = self.dropout(x)
         x = self.model_2_dense2(x)
+        x = self.dropout(x)
         x = self.model_2_dense3(x)
         return x
 
