@@ -44,18 +44,20 @@ def rotate_point_cloud(batch_data):
     return rotated_data
 
 
-def loss_graph(losses, accuracies):
+def loss_graph(train_losses, validation_losses, train_accuracies, validation_accuracies):
     plt.figure(figsize=(10, 5))
 
     plt.subplot(1, 2, 1)
-    plt.plot(losses, label='Loss')
+    plt.plot(train_losses, label='Loss')
+    plt.plot(validation_losses, label='Validation Loss')
     plt.xlabel('Iteration')
     plt.ylabel('Loss')
     plt.title('Training Loss')
     plt.legend()
 
     plt.subplot(1, 2, 2)
-    plt.plot(accuracies, color='orange', label='Accuracy')
+    plt.plot(train_accuracies, color='orange', label='Accuracy')
+    plt.plot(validation_accuracies, color='orange', label='Validation Accuracy')
     plt.xlabel('Iteration')
     plt.ylabel('Accuracy')
     plt.title('Training Accuracy')
