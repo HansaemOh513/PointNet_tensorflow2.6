@@ -8,7 +8,8 @@ from tensorflow.keras.optimizers import Adam
 from tqdm import tqdm
 import argparse
 from utils import loss_graph, shuffle_data, rotate_point_cloud, data_loader
-
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(BASE_DIR)
 TRAIN_FILES = [
 "data/modelnet40_ply_hdf5_2048/ply_data_train0.h5",
 "data/modelnet40_ply_hdf5_2048/ply_data_train1.h5",
